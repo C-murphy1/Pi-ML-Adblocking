@@ -35,7 +35,8 @@ for x in range(0,len(listx)): #Removes newline characters
 
 
 #NEED NEW METHOD OF TOKENIZING
-tokenizer = tfds.features.text.Tokenizer() #Creates tokenizer object to assign numeric values to all characters in the training data
+tokenizer = tfds.deprecated.text.Tokenizer() 
+#tokenizer = tfds.features.text.Tokenizer() #Creates tokenizer object to assign numeric values to all characters in the training data
 vocab_size = 0
 
 
@@ -46,7 +47,8 @@ for text in listx:
 
 vocab_size = len(vocabulary_set) + 2 #Adds 1 to account for any characters missing from training set. This removes a crash caused when a trained model encounters a character missing from its training data
 
-encoder = tfds.features.text.TokenTextEncoder(vocabulary_set)
+encoder = tfds.deprecated.text.TokenTextEncoder(vocabulary_set) 
+#encoder = tfds.features.text.TokenTextEncoder(vocabulary_set)
 
 def encode(text):
   encoded_text = encoder.encode(text)

@@ -2,11 +2,7 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 import os
 import numpy as np
-
-
-
-optimizer = tf.keras.optimizers.Adamax(0.001)
-optimizer.learning_rate.assign(0.05) 
+ 
 
 text_file = open("TrainingDataY.txt") 
 txt_listy = text_file.readlines() #Reads formatted Training data from "TrainingDataY.txt" into a list
@@ -34,9 +30,8 @@ for x in range(0,len(listx)): #Removes newline characters
     listx[x] = listx[x].replace('\n','')
 
 
-#NEED NEW METHOD OF TOKENIZING
-tokenizer = tfds.deprecated.text.Tokenizer() 
-#tokenizer = tfds.features.text.Tokenizer() #Creates tokenizer object to assign numeric values to all characters in the training data
+#Needs replaced with a new non-deprecated method of tokenizing
+tokenizer = tfds.deprecated.text.Tokenizer() #Creates tokenizer object to assign numeric values to all characters in the training data
 vocab_size = 0
 
 
@@ -45,17 +40,14 @@ for text in listx:
   tokens = tokenizer.tokenize(text)
   vocabulary_set.update(tokens)
 
-vocab_size = len(vocabulary_set) + 2 #Adds 1 to account for any characters missing from training set. This removes a crash caused when a trained model encounters a character missing from its training data
+vocab_size = len(vocabulary_set) + 2 #Adds 2 to account for any characters missing from training set. This removes a crash caused when a trained model encounters a character missing from its training data
 
+#Needs replaced with a new non-deprecated method of encoding
 encoder = tfds.deprecated.text.TokenTextEncoder(vocabulary_set) 
-#encoder = tfds.features.text.TokenTextEncoder(vocabulary_set)
 
-def encode(text):
-  encoded_text = encoder.encode(text)
-  return encoded_text
 
 for x in range(0, len(listx)):
-    item_value = encode(listx[x]) #Uses encoding pattern created by the tokenizer to replace all characters in the dataset with numbers
+    item_value = encoder.encode(listx[x]) #Uses encoding pattern created by the tokenizer to replace all characters in the dataset with numbers
     item_length = len(item_value)
     
                               #Max length of an individual datapoint is 100 characters.
@@ -64,18 +56,18 @@ for x in range(0, len(listx)):
             item_value.append(0)
     listx[x] = item_value
 
-encoder.save_to_file('Model\VocabList') 
+encoder.save_to_file('Model/VocabList') 
 
-X = np.array(listx)
+X = np.array(listx) #The model does not accept python lists, must be converted into numpy arrays
 y = np.array(listy)
-
-
 
 #Code below defines the model, optimizer, and layers used to categorize the dataset
 #
 #The model is trained on half of the dataset, while the other half is used to test the model during training
 #These model settings can be cmodified to improve accuracy, but larger models may cause issues when transferred to a RaspberryPi
-#
+
+optimizer = tf.keras.optimizers.Adamax(0.001)
+optimizer.learning_rate.assign(0.05) 
 
 model = tf.keras.Sequential()
 model.add(tf.keras.layers.Embedding(vocab_size, 32))
@@ -93,7 +85,7 @@ model.compile(optimizer=optimizer,
 model.fit(X,y,epochs=5,batch_size=64,validation_split=0.5)
 
 
-model.save("Model\model.keras")
+model.save("Model/model.keras")
 
 
 

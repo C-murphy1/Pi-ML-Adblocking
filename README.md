@@ -34,13 +34,13 @@ The model will be saved in the "Model" folder, as "model.keras" and will also in
 
 Running the code on a RaspberryPi requires that you have PiHole, Tensorflow, Tensorflow Datasets, and NumPy installed on the RaspberryPi.
 
-The Easiest way to get the model running on the Pi is to clone the repositoty onto the Pi, then transfer the files from the "Training/Model" folder on your PC, to the same foler on the Pi.
+The Easiest way to get the model running on the Pi is to clone the repository onto the Pi, then transfer the files from the "Training/Model" folder on your PC, to the same foler on the Pi.
 
-In order for the code to function properly PiHole needs to be configured to have the log file enabled. Some privacy settings may prevent PiHole from using the log file, which is the waythat the current version of this program interfaces with PiHole.
+In order for the code to function properly PiHole needs to be configured to have the log file enabled. Some privacy settings may prevent PiHole from using the log file, which is the way that the current version of this program interfaces with PiHole.
 
 After the setup is done, you can run the "Run.py" script and the model should begin to filter through URL requests. Any links the the model determines are adverisments will be added to be PiHole blacklist.
 
-To run the program in the background, I will typically install "Screen" on the RaspberryPi and enter a screen session before running the code, Otherwise the Pi could also be configured to run the program at startup.
+To run the program in the background, I will typically install "Screen" on the RaspberryPi and enter a Screen session before running the code, Otherwise the Pi could also be configured to run the program at startup.
 
 
 

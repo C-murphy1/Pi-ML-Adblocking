@@ -8,7 +8,7 @@ It is also not recommended to train the model on a RaspberryPi due to its slower
 
 The "URLformat.py" and "ModelTrain.py" files are used to train a new model based on a given dataset. It is recommended to create a new dataset for modern website URL's, however, there is a pretrained verion of the model. If you wish to use the pretrained model simply copy the files from the "ModelPreTrained" folder into the "Model folder", and skip to the section about deploying the code on a RaspberryPi.
 
-The process of training the model is fairly straightforward. The first step is to create a dataset of URL's that should be blocked and URL's that should be allowed. There are numerous sources of data online with lists that contain this information. As more websites are created these URL databases will also change, so it is reocmmended to find an up-to-date source for collecting lists of website URL's to make the model as effective as possible.
+The process of training the model is fairly straightforward. The first step is to create a dataset of URL's that should be blocked and URL's that should be allowed. There are numerous sources of data online with lists that contain this information. As more websites are created these URL databases will also change, so it is recommended to find an up-to-date source for collecting lists of website URL's to make the model as effective as possible.
 
 The dataset should be copied into the Training/RawData.txt file, and follow the rules below:
 

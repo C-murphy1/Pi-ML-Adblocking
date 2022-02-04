@@ -15,7 +15,7 @@ The dataset should be copied into the Training/RawData.txt file, and follow the 
 ~~~~
 # Formatting in the program follows these Rules/Assumptions
 #   1.) Dataset is already randomized
-#   2.) Each Url is preceeded by a "1 " "0 " to create the list
+#   2.) Each Url is preceeded by a "1 " or "0 " to create the list
 #           ex:
 #               "1 google.com" (indicates that google.com is a website that should not be blocked)
 #               "0 google.com" (indicates that google.com is a website that should be blocked)
